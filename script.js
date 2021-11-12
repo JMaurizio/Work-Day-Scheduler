@@ -1,6 +1,7 @@
 $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 var currentTime = moment().hours();
+var scheduleTime = $(".schedule").attr("id")
 var scheduledEvents = [];
 
 var save = $(".save")
@@ -12,33 +13,34 @@ save.on("click", function() {
     localStorage.setItem("scheduleData", JSON.stringify(scheduleData))
     scheduledEvents.push(scheduleData)
     localStorage.setItem("scheduledEvents", JSON.stringify(scheduledEvents))
-
-    $(".schedule").each(function() {
-        if(scheduleData.time == $(this).attr("id"))
-            $(this).text(function(scheduledEvents) {
-                return scheduledEvents.schedule
-            })
-    })
 });
+
+function returnPlaner() {
+    $(".schedule").each(function() {
+        if(scheduleTime = currentTime)
+            $(this).text(JSON.parse(localStorage.getItem("scheduledEvents")))
+            console.log(JSON.parse(localStorage.getItem("scheduledEvents")))
+    })    
+}
 
 function blockColor() {
 
     $(".schedule").each(function() {
     var hour = $(this).attr("id");
         if(currentTime > hour) {
-            $(this).css("background-color","red")
-            $(this).css("color","white")
+            $(this).css("background-color","#ff6961")
+            $(this).css("color", "white")
         }
         else if (currentTime == hour) {
-            $(this).css("background-color","yellow")
-            $(this).css("color","white")
+            $(this).css("background-color","#FFFF8F")
         }
         else {
-            $(this).css("background-color","green")
-            $(this).css("color","white")
+            $(this).css("background-color","#77dd77")
+            $(this).css("color", "white")
         }
 
     });
 };
 
 blockColor()
+returnPlaner()
