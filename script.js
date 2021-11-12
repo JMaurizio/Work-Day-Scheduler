@@ -2,26 +2,17 @@ $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 var currentTime = moment().hours();
 var scheduleTime = $(".schedule").attr("id")
-var scheduledEvents = [];
+var divId = $("div").attr("id")
 
 var save = $(".save")
 save.on("click", function() {
-    var scheduleData = {
-        time: $(this).siblings(".time").text(),
-        schedule: $(this).siblings(".schedule").val()
-    }    
-    localStorage.setItem("scheduleData", JSON.stringify(scheduleData))
-    scheduledEvents.push(scheduleData)
-    localStorage.setItem("scheduledEvents", JSON.stringify(scheduledEvents))
-});
 
-function returnPlaner() {
-    $(".schedule").each(function() {
-        if(scheduleTime = currentTime)
-            $(this).text(JSON.parse(localStorage.getItem("scheduledEvents")))
-            console.log(JSON.parse(localStorage.getItem("scheduledEvents")))
-    })    
-}
+    time = $(this).siblings(".time").text(),
+    schedule = $(this).siblings(".schedule").val()
+
+    localStorage.setItem(time, schedule)
+    
+});
 
 function blockColor() {
 
@@ -43,4 +34,13 @@ function blockColor() {
 };
 
 blockColor()
-returnPlaner()
+
+$("#9AM .schedule").val(localStorage.getItem("9AM"))
+$("#10AM .schedule").val(localStorage.getItem("10AM"))
+$("#11AM .schedule").val(localStorage.getItem("11AM"))
+$("#12PM .schedule").val(localStorage.getItem("12PM"))
+$("#1PM .schedule").val(localStorage.getItem("1PM"))
+$("#2PM .schedule").val(localStorage.getItem("2PM"))
+$("#3PM .schedule").val(localStorage.getItem("3PM"))
+$("#4PM .schedule").val(localStorage.getItem("4PM"))
+$("#5PM .schedule").val(localStorage.getItem("5PM"))
